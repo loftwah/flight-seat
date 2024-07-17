@@ -61,7 +61,7 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-For any questions or suggestions, please contact [your email or GitHub profile].
+For any questions or suggestions, please contact [@loftwah](https://x.com/loftwah).
 
 ---
 
