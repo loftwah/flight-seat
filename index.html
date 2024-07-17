@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airplane Seats by Echosight</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .seat {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ccc;
+            margin: 5px;
+            background-color: #414549;
+            border-radius: 8px;
+        }
+        .filled-seat img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .aisle {
+            width: 20px;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 flex flex-col items-center justify-center min-h-screen text-white pt-20 pb-20">
+
+    <h1 class="text-3xl font-bold mb-6">Who would you rather sit with?</h1>
+
+    <div class="mb-6 grid grid-cols-4 gap-4">
+        <div><input type="text" id="username1" placeholder="Seat 1" class="p-2 border rounded w-full text-black" value="GummoXXX"></div>
+        <div><input type="text" id="username2" placeholder="Seat 2" class="p-2 border rounded w-full text-black" value="loftwah"></div>
+        <div><input type="text" id="username3" placeholder="Seat 3" class="p-2 border rounded w-full text-black" value="ImLunaHey"></div>
+        <div><input type="text" id="username4" placeholder="Seat 4" class="p-2 border rounded w-full text-black" value="SavvasStephnds"></div>
+        <div><input type="text" id="username5" placeholder="Seat 5" class="p-2 border rounded w-full text-black" value="JohnCena"></div>
+        <div><input type="text" id="username6" placeholder="Seat 6" class="p-2 border rounded w-full text-black" value="Shreyassanthu77"></div>
+        <div><input type="text" id="username7" placeholder="Seat 7" class="p-2 border rounded w-full text-black" value="watthedoodle"></div>
+        <div><input type="text" id="username8" placeholder="Seat 8" class="p-2 border rounded w-full text-black" value="init_bobjames"></div>
+        <div><input type="text" id="username9" placeholder="Seat 9" class="p-2 border rounded w-full text-black" value="eddiejaoude"></div>
+        <div><input type="text" id="username10" placeholder="Seat 10" class="p-2 border rounded w-full text-black" value="WarrenInTheBuff"></div>
+        <div><input type="text" id="username11" placeholder="Seat 11" class="p-2 border rounded w-full text-black" value="IroncladDev"></div>
+        <div><input type="text" id="username12" placeholder="Seat 12" class="p-2 border rounded w-full text-black" value="ID_AA_Carmack"></div>
+        <div><input type="text" id="username13" placeholder="Seat 13" class="p-2 border rounded w-full text-black" value="DorianDevelops"></div>
+        <div><input type="text" id="username14" placeholder="Seat 14" class="p-2 border rounded w-full text-black" value="ptr_to_joel"></div>
+        <div><input type="text" id="username15" placeholder="Seat 15" class="p-2 border rounded w-full text-black" value="techsavvytravvy"></div>
+        <div><input type="text" id="username16" placeholder="Seat 16" class="p-2 border rounded w-full text-black" value="DanielW_Kiwi"></div>
+        <div><input type="text" id="username17" placeholder="Seat 17" class="p-2 border rounded w-full text-black" value="TopherToy"></div>
+        <div><input type="text" id="username18" placeholder="Seat 18" class="p-2 border rounded w-full text-black" value="shadcn"></div>
+        <div><input type="text" id="username19" placeholder="Seat 19" class="p-2 border rounded w-full text-black" value="DThompsonDev"></div>
+        <div><input type="text" id="username20" placeholder="Seat 20" class="p-2 border rounded w-full text-black" value="scrumtuous"></div>
+        <div><input type="text" id="username21" placeholder="Seat 21" class="p-2 border rounded w-full text-black" value="B_Real"></div>
+        <div><input type="text" id="username22" placeholder="Seat 22" class="p-2 border rounded w-full text-black" value="kelseyhightower"></div>
+        <div><input type="text" id="username23" placeholder="Seat 23" class="p-2 border rounded w-full text-black" value="TheJackForge"></div>
+        <div><input type="text" id="username24" placeholder="Seat 24" class="p-2 border rounded w-full text-black" value="kunalstwt"></div>
+    </div>
+    
+    <button onclick="generateSeats()" class="mb-6 p-2 bg-green-500 text-white rounded hover:bg-green-700">Generate Seats</button>
+
+    <h2 class="text-3xl font-bold mb-6">Choose your seat!</h2>
+
+    <div class="grid grid-cols-7 gap-4" id="seatGrid">
+        <!-- Placeholder for seats -->
+    </div>
+
+    <script>
+        async function fetchProfileImage(username, apiKey) {
+            const targetUrl = `https://test.xo-140.workers.dev/@${username}?apiKey=${apiKey}`;
+            const response = await fetch(targetUrl);
+            if (response.ok) {
+                const data = await response.json();
+                return data.profile.avatar;
+            } else {
+                return 'https://via.placeholder.com/100?text=No+Image';
+            }
+        }
+
+        async function generateSeats() {
+            const usernames = [];
+            for (let i = 1; i <= 24; i++) {
+                const username = document.getElementById(`username${i}`).value.trim();
+                usernames.push(username);
+            }
+
+            const seatGrid = document.getElementById('seatGrid');
+            seatGrid.innerHTML = '';
+            const apiKey = ''; // Replace with your actual API key
+
+            // Define the seating structure
+            const seatingStructure = [
+                'profile', 'empty', 'profile', 'aisle', 'profile', 'profile', 'empty',
+                'empty', 'profile', 'profile', 'aisle', 'empty', 'profile', 'profile',
+                'profile', 'profile', 'empty', 'aisle', 'profile', 'profile', 'empty',
+                'profile', 'empty', 'profile', 'aisle', 'profile', 'empty', 'profile',
+                'empty', 'profile', 'profile', 'aisle', 'empty', 'profile', 'profile',
+                'profile', 'profile', 'empty', 'aisle', 'profile', 'profile', 'empty'
+            ];
+
+            let profileIndex = 0;
+            let emptyIndex = 1;
+
+            for (let i = 0; i < seatingStructure.length; i++) {
+                if (seatingStructure[i] === 'aisle') {
+                    const aisleDiv = document.createElement('div');
+                    aisleDiv.classList.add('aisle');
+                    seatGrid.appendChild(aisleDiv);
+                    continue;
+                }
+
+                const seatDiv = document.createElement('div');
+                seatDiv.classList.add('seat');
+
+                if (seatingStructure[i] === 'profile' && profileIndex < usernames.length && usernames[profileIndex]) {
+                    seatDiv.classList.add('filled-seat');
+                    const img = document.createElement('img');
+                    try {
+                        const profileImageUrl = await fetchProfileImage(usernames[profileIndex], apiKey);
+                        img.src = profileImageUrl;
+                    } catch (error) {
+                        img.src = 'https://via.placeholder.com/100?text=No+Image';
+                    }
+                    img.alt = `Profile Picture of ${usernames[profileIndex]}`;
+                    seatDiv.appendChild(img);
+                    profileIndex++;
+                } else if (seatingStructure[i] === 'empty') {
+                    seatDiv.innerText = emptyIndex++;
+                }
+
+                seatGrid.appendChild(seatDiv);
+            }
+        }
+
+        // Initial load
+        document.addEventListener('DOMContentLoaded', () => {
+            generateSeats();
+        });
+    </script>
+
+</body>
+</html>
