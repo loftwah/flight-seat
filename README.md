@@ -67,4 +67,6 @@ For any questions or suggestions, please contact [your email or GitHub profile].
 
 **Note**: Ensure you have an active internet connection when using this project as it fetches profile pictures from Twitter/X.
 
+**CORS Note**: You may encounter Cross-Origin Resource Sharing (CORS) issues when fetching profile images from Twitter/X. This is due to browser security restrictions that prevent web pages from making requests to a different domain than the one that served the web page. To overcome this, you can use a CORS proxy service or set up your own proxy to fetch the images.
+
 Enjoy generating and sharing your unique airplane seating layouts!
